@@ -1,6 +1,5 @@
 MWANASHERIA TECH SOLUTIONS Website
 
-![MWANASHERIA TECH SOLUTIONS Preview](https://images.unsplash.com/photo-1523268755253-2b7d2b2b5f9e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd)
 
 Professional website for MWANASHERIA TECH SOLUTIONS - A Tanzania-based tech company specializing in custom software development, web design, and mobile applications.
 
