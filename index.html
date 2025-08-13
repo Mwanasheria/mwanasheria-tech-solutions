@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-         :root {
+        :root {
             --bg: #0f1724;
             --card: #0b1220;
             --muted: #9aa6b2;
@@ -42,7 +42,6 @@
             margin: 0 auto;
             padding: 28px
         }
-        /* Header */
         
         header {
             backdrop-filter: blur(6px);
@@ -95,7 +94,6 @@
             border-radius: 8px;
             font-weight: 700
         }
-        /* Hero */
         
         .hero {
             display: grid;
@@ -163,7 +161,6 @@
             margin: 8px 0 0;
             font-size: 14px
         }
-        /* Services */
         
         .services {
             padding: 34px 0
@@ -189,7 +186,6 @@
             color: var(--muted);
             margin: 0
         }
-        /* Portfolio */
         
         .portfolio-grid {
             display: grid;
@@ -213,7 +209,6 @@
         .project .meta {
             padding: 12px
         }
-        /* About */
         
         .about {
             display: grid;
@@ -228,7 +223,6 @@
             padding: 18px;
             border-radius: 12px
         }
-        /* Contact */
         
         .contact {
             padding: 34px 0
@@ -263,7 +257,6 @@
             color: var(--muted);
             border-top: 1px solid rgba(255, 255, 255, 0.03)
         }
-        /* Responsive */
         
         @media (max-width:900px) {
             .services-grid,
@@ -487,40 +480,19 @@
 
             <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:16px">
                 <div class="card">
-        <script>
-                 <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                         <input type="text" name="name" placeholder="Your name" required>
-                         <input type="email" name="_replyto" placeholder="Email" required>
-                         <input type="text" name="phone" placeholder="Phone (optional)">
-                         <input type="text" name="company" placeholder="Company (optional)">
-                        <textarea name="message" placeholder="Tell us about your project" required></textarea>
+                    <form id="contactForm" action="https://formspree.io/f/xjkolqzb" method="POST">
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <input type="email" id="email" name="_replyto" placeholder="Email" required>
+                        <input type="text" id="phone" name="phone" placeholder="Phone (optional)">
+                        <input type="text" id="company" name="company" placeholder="Company (optional)">
+                        <textarea id="message" name="message" placeholder="Tell us about your project" required></textarea>
                         <input type="hidden" name="_subject" value="New website enquiry">
-                       <button type="submit" class="btn btn-primary">Send Message</button>
-                   </form>
-    <div id="form-status" style="margin-top:12px;"></div>
-  const form = document.querySelector('form');
-  const formStatus = document.getElementById('form-status');
-  
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => {
-      formStatus.textContent = "Message sent successfully!";
-      formStatus.style.color = "var(--accent)";
-      form.reset();
-    })
-    .catch(error => {
-      formStatus.textContent = "Oops! There was a problem sending your message.";
-      formStatus.style.color = "#ff6b6b";
-    });
-  });
-</script>
+                        <div style="display:flex;gap:12px;align-items:center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <button type="button" class="btn btn-outline" onclick="clearForm()">Clear</button>
+                        </div>
+                        <div id="form-status" style="margin-top:12px;"></div>
+                    </form>
                 </div>
 
                 <div class="card info">
@@ -533,7 +505,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -543,10 +514,58 @@
         </div>
     </footer>
 
+    <script>
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('form-status');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(contactForm);
+                    
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            formStatus.textContent = "Message sent successfully!";
+                            formStatus.style.color = "var(--accent)";
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    })
+                    .catch(error => {
+                        formStatus.textContent = "Oops! There was a problem sending your message. Please try again later or email us directly.";
+                        formStatus.style.color = "#ff6b6b";
+                        console.error('Error:', error);
+                    });
+                });
+            }
+        });
 
+        // Clear form function
+        function clearForm() {
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('form-status');
+            if (contactForm) {
+                contactForm.reset();
+                formStatus.textContent = '';
+            }
+        }
+
+        // Scroll to contact function
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
-
-
 </html>
-
-
