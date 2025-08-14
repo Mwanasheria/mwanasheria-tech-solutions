@@ -41,10 +41,7 @@
         .container {
             max-width: var(--maxw);
             margin: 0 auto;
-            padding: 28px;
-            background: var(--card);
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 28px 0;
         }
         
         header {
@@ -296,6 +293,42 @@
                 grid-template-columns: 1fr
             }
         }
+
+        /* Styling for specific sections */
+        .hero-right {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .services {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 34px 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .about .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact .info {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
     </style>
 
     <script type="application/ld+json">
@@ -336,12 +369,12 @@
         </div>
     </header>
 
-    <main class="container">
+    <main>
         <!-- HERO -->
-        <section class="hero" id="home">
+        <section class="container hero" id="home">
             <div class="hero-left">
                 <h1>Innovative digital solutions for a smarter future</h1>
-                <p>MWANASHERIA TECH SOLUTIONS builds scalable software, modern websites, and beautiful mobile apps that help businesses grow. We focus on usability, performance, and measurable results.</p>
+                <p style="color:var(--muted)">MWANASHERIA TECH SOLUTIONS builds scalable software, modern websites, and beautiful mobile apps that help businesses grow. We focus on usability, performance, and measurable results.</p>
                 <div class="cta-row">
                     <button class="btn btn-primary" onclick="scrollToContact()">Get a Free Quote</button>
                     <a class="btn btn-outline" href="#portfolio">See Portfolio</a>
@@ -380,7 +413,7 @@
         </section>
 
         <!-- SERVICES -->
-        <section id="services" class="services">
+        <section id="services" class="container services">
             <h2>Our Services</h2>
             <p style="color:var(--muted)">We offer end-to-end digital solutions — from idea to launch and beyond.</p>
 
@@ -403,7 +436,7 @@
         </section>
 
         <!-- PORTFOLIO -->
-        <section id="portfolio" style="padding:28px 0">
+        <section id="portfolio" class="container" style="padding:28px 0">
             <h2>Portfolio</h2>
             <p style="color:var(--muted)">Selected projects and demos — click to view details.</p>
 
@@ -435,7 +468,7 @@
         </section>
 
         <!-- ABOUT -->
-        <section id="about" class="about">
+        <section id="about" class="container about">
             <div>
                 <h2>About MWANASHERIA TECH SOLUTIONS</h2>
                 <p style="color:var(--muted)">We are a Tanzania-based tech company delivering tailored digital solutions to businesses, startups, and organisations. Our team combines design thinking with engineering discipline to build products that customers love.</p>
@@ -479,7 +512,7 @@
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="contact">
+        <section id="contact" class="container contact">
             <h2>Contact Us</h2>
             <p style="color:var(--muted)">Send us a message and we'll get back within 24 hours.</p>
 
@@ -500,7 +533,7 @@
                     </form>
                 </div>
 
-                <div class="card info">
+                <div class="info">
                     <h4>Office</h4>
                     <p style="color:var(--muted)">Mbeya, Tanzania</p>
                     <h4 style="margin-top:12px">Business Hours</h4>
