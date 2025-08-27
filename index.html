@@ -405,17 +405,25 @@
             .portfolio-grid { grid-template-columns: 1fr }
             .about { grid-template-columns: 1fr }
             #contact > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important }
+            .container { padding-left: 16px; padding-right: 16px }
+            header .cta { display: none }
+            .search { display: none }
         }
         
         @media (max-width:520px) {
-            .hero-left h1 { font-size: 26px }
+            .hero-left h1 { font-size: 24px }
             nav ul { display: none }
-            nav ul.show { display: flex; position: absolute; right: 16px; top: 64px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 10px; gap: 8px; flex-direction: column; box-shadow: var(--shadow); }
+            nav ul.show { display: flex; position: fixed; left: 12px; right: 12px; top: 64px; background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 8px; gap: 0; flex-direction: column; box-shadow: var(--shadow); z-index: 1000; text-align: left; animation: slide-down .18s ease-out }
+            nav ul.show li a { display: block; padding: 10px 12px }
             .menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: #ffffff }
             .feature-grid { grid-template-columns: 1fr }
             .services-grid { grid-template-columns: 1fr }
             .portfolio-grid { grid-template-columns: 1fr }
+            .cta-row .btn { width: 100% }
+            .container { padding-left: 14px; padding-right: 14px }
         }
+
+        @keyframes slide-down { from { opacity: 0; transform: translateY(-6px) } to { opacity: 1; transform: translateY(0) } }
 
         /* Styling for specific sections */
         .hero-right {
@@ -810,8 +818,10 @@
         // Mobile menu toggle
         function toggleMenu() {
             const nav = document.getElementById('primary-nav');
+            const btn = document.querySelector('.menu-btn');
             if (!nav) return;
             nav.classList.toggle('show');
+            if (btn) btn.setAttribute('aria-expanded', nav.classList.contains('show') ? 'true' : 'false');
         }
 
         // Show menu button on small screens
@@ -902,6 +912,12 @@
 
             document.addEventListener('click', (e) => {
                 if (!dropdown.contains(e.target) && e.target !== input) hide();
+                const nav = document.getElementById('primary-nav');
+                const btn = document.querySelector('.menu-btn');
+                if (nav && btn && nav.classList.contains('show') && !nav.contains(e.target) && e.target !== btn) {
+                    nav.classList.remove('show');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
             });
         })();
 
