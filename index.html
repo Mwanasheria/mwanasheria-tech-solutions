@@ -108,6 +108,8 @@
             background: rgba(2, 6, 23, 0.04)
         }
 
+        .menu-btn { display: none }
+
         /* Header search */
         .search {
             position: relative;
@@ -486,7 +488,7 @@
             </div>
 
             <nav>
-                <button class="menu-btn" aria-label="Toggle menu" onclick="toggleMenu()" style="display:none">
+                <button class="menu-btn" aria-label="Toggle menu" onclick="toggleMenu()">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/></svg>
                 </button>
                 <ul id="primary-nav">
@@ -824,21 +826,7 @@
             if (btn) btn.setAttribute('aria-expanded', nav.classList.contains('show') ? 'true' : 'false');
         }
 
-        // Show menu button on small screens
-        (function() {
-            const menuBtn = document.querySelector('.menu-btn');
-            const mq = window.matchMedia('(max-width: 520px)');
-            const update = () => {
-                if (!menuBtn) return;
-                menuBtn.style.display = mq.matches ? 'inline-flex' : 'none';
-                if (!mq.matches) {
-                    const nav = document.getElementById('primary-nav');
-                    if (nav) nav.classList.remove('show');
-                }
-            };
-            update();
-            mq.addEventListener ? mq.addEventListener('change', update) : mq.addListener(update);
-        })();
+        // Menu button visibility handled via CSS media queries
 
         // Dynamic search with suggestions
         (function() {
@@ -914,7 +902,7 @@
                 if (!dropdown.contains(e.target) && e.target !== input) hide();
                 const nav = document.getElementById('primary-nav');
                 const btn = document.querySelector('.menu-btn');
-                if (nav && btn && nav.classList.contains('show') && !nav.contains(e.target) && e.target !== btn) {
+                if (nav && btn && nav.classList.contains('show') && !nav.contains(e.target) && !btn.contains(e.target)) {
                     nav.classList.remove('show');
                     btn.setAttribute('aria-expanded', 'false');
                 }
